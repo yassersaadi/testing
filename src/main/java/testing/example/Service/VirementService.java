@@ -3,6 +3,7 @@ package testing.example.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import testing.example.Helpers.VirementValidator;
+import testing.example.Model.VirementRequest;
 
 @Service
 public class VirementService {
@@ -17,7 +18,7 @@ public class VirementService {
         this.accountService = accountService;
     }
 
-    public void performTransfert(VirementRequest virementRequest){
+    public void performTransfert(VirementRequest virementRequest)  {
         String ribSender = virementRequest.getRibSender();
         String ribReceiver = virementRequest.getRibReceiver();
 

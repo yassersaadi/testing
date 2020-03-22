@@ -14,19 +14,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountServiceTest {
 
-    private AccountService accountService;
+    static private AccountService accountService;
     public static HashMap<String, Account> accountHashMap;
     public static Account account;
 
     @BeforeAll
-    static void initBeforeALl(){
+    static void init(){
         AccountServiceTest.accountHashMap = new HashMap<>();
         AccountServiceTest.account = new Account("123456789",new BigDecimal(20000));
         accountHashMap.put(account.getRib(),account);
-    }
-
-    @BeforeEach
-    void initBeforeEach(){
         accountService = new AccountService(accountHashMap);
     }
 

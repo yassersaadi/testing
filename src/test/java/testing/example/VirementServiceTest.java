@@ -7,7 +7,7 @@ import org.mockito.MockitoAnnotations;
 import testing.example.Helpers.VirementValidator;
 import testing.example.Model.Account;
 import testing.example.Service.AccountService;
-import testing.example.Service.VirementRequest;
+import testing.example.Model.VirementRequest;
 import testing.example.Service.VirementService;
 
 import java.math.BigDecimal;
@@ -32,6 +32,9 @@ class VirementServiceTest {
     private Account accountSender;
     private Account accountReceiver;
     private HashMap<String, Account> accountHashMap;
+
+
+
 
     @BeforeEach
     void initBeforeEach() {
