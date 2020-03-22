@@ -2,9 +2,13 @@ package testing.example;
 
 import org.junit.jupiter.api.*;
 
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import testing.example.Helpers.VirementValidator;
+import testing.example.Model.Account;
+import testing.example.Service.AccountService;
+import testing.example.Service.VirementRequest;
+import testing.example.Service.VirementService;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -13,9 +17,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doCallRealMethod;
+import static org.mockito.Mockito.*;
 
-
+//@ExtendWith(SpringExtension.class)
+// --> Question Using SpringExtension does start a context but with context caching it reduces the time of execution of that test (from 800ms to 45ms) well (from 294ms to 45ms) when i removed the postConstruct
+// but using context does make this test an integration test not a unit test
 class VirementServiceTest {
     @Mock
     private AccountService accountService;
@@ -40,26 +46,13 @@ class VirementServiceTest {
         accountHashMap.put(accountSender.getRib(), accountSender);
         accountHashMap.put(accountReceiver.getRib(), accountReceiver);
 
-        given(accountService.getAccountHashMap()).willReturn(accountHashMap);
         given(accountService.getAccount(accountSender.getRib())).willReturn(accountSender);
         given(accountService.getAccount(accountReceiver.getRib())).willReturn(accountReceiver);
         given(accountService.getBalance(accountSender.getRib())).willReturn(accountSender.getBalance());
+        given(accountService.getBalance(accountReceiver.getRib())).willReturn(accountReceiver.getBalance());
         doCallRealMethod().when(accountService).setBalance(anyString(), any(BigDecimal.class));
     }
 
-//    @Test
-//    void performTransfert() {
-//        VirementService virementService = new VirementService();
-//        AccountService accountService = new AccountService();
-//        String ribEmmeteur = "123456789";
-//        String ribRecepteur = "123456781";
-//        VirementRequest virement = new VirementRequest(new BigDecimal(3000),accountService.getAccountHashMap().get(ribEmmeteur).getRib(),accountService.getAccountHashMap().get(ribRecepteur).getRib());
-//        BigDecimal soldeBeforeVirementEmmeteur = accountService.getBalance(ribEmmeteur);
-//        BigDecimal soldeBeforeViremenRecepteur = accountService.getBalance(ribRecepteur);
-//        virementService.performTransfert(virement);
-//        assertEquals(soldeBeforeVirementEmmeteur.subtract(virement.getMontant()), accountService.getBalance(ribEmmeteur) );
-//        assertEquals(soldeBeforeViremenRecepteur.add(virement.getMontant()), accountService.getBalance(ribEmmeteur) );
-//    }
 
     @Test
     @DisplayName("Perform transfer of a negative payment")
@@ -78,12 +71,25 @@ class VirementServiceTest {
 
     @Test
     @DisplayName("Perform transfer of a payment == 0")
-    @Disabled
     void performPaymentEqualZeroTransfer() {
         VirementRequest virementRequest = new VirementRequest(new BigDecimal(0), accountSender.getRib(), accountReceiver.getRib());
         virementService.performTransfert(virementRequest);
         //Should check if there is a call to the performTransfert
+        verify(accountService,never()).setBalance(virementRequest.getRibSender(),virementRequest.getPayment());
+        verify(accountService,never()).setBalance(virementRequest.getRibReceiver(),virementRequest.getPayment());
     }
+
+    @Test
+    @DisplayName("Perform transfer of a null payment")
+    void performNullTransfer() {
+        VirementRequest virementRequest = new VirementRequest(null, accountSender.getRib(), accountReceiver.getRib());
+
+        virementService.performTransfert(virementRequest);
+        //Should check if there is a call to the performTransfert
+        verify(accountService,never()).setBalance(virementRequest.getRibSender(),virementRequest.getPayment());
+        verify(accountService,never()).setBalance(virementRequest.getRibReceiver(),virementRequest.getPayment());
+    }
+
 
 
     @Test
@@ -100,17 +106,6 @@ class VirementServiceTest {
         assertEquals(expectedReceiverBalance, accountReceiver.getBalance(), "Should add payment to receiver balance ");
     }
 
-
-
-    @Test
-    @DisplayName("Perform transfer of a null payment")
-    @Disabled
-    void performNullTransfer() {
-        VirementRequest virementRequest = new VirementRequest(null, accountSender.getRib(), accountReceiver.getRib());
-
-        virementService.performTransfert(virementRequest);
-        //Should check if there is a call to the performTransfert
-    }
 
 
     @Test

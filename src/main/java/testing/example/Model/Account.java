@@ -1,4 +1,4 @@
-package testing.example;
+package testing.example.Model;
 
 import java.math.BigDecimal;
 

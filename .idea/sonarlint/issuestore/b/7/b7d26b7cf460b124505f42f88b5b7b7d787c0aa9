@@ -1,7 +1,9 @@
 
 Q
-java:S1066"/Merge this if statement with the enclosing one.(‹óôùÿÿÿÿ8¼öÚõ‹.
-J
-java:S1125"(Remove the literal "true" boolean value.(¹åèüûÿÿÿÿ8„É¯õ‹.
-c
-java:S1126"AReplace this if-then-else statement by a single return statement.(ğĞ·üÿÿÿÿ8€¥èö‹.
+java:S10668"/Merge this if statement with the enclosing one.(ãÈˆÑùÿÿÿÿ8àŞ§Ê.
+E
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àŞ§Ê.
+E
+java:S1148&"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àŞ§Ê.
+E
+java:S1148/"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8àŞ§Ê.

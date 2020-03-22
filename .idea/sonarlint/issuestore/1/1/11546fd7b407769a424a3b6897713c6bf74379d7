@@ -1,9 +1,13 @@
 
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ƒŒê
-M	java:S106"9Replace this use of System.out or System.err by a logger.(ëëÜ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ù¸ã±øÿÿÿÿ
-S	java:S106"9Replace this use of System.out or System.err by a logger.(ù¸ã±øÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ñ”êİ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(£ù©ü
-S	java:S106"9Replace this use of System.out or System.err by a logger.(±Ñÿùûÿÿÿÿ
-N	java:S106"9Replace this use of System.out or System.err by a logger.(ƒŒê
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ù¸ã±øÿÿÿÿ
+M	java:S106"9Replace this use of System.out or System.err by a logger.(ëëÜ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ƒŒê
+N	java:S106"9Replace this use of System.out or System.err by a logger.(£ù©ü
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ƒŒê
+u
+java:S1128"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8ßŞ§Ê.
+e
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş8ßŞ§Ê.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(±Ñÿùûÿÿÿÿ8ßŞ§Ê.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(ñ”êİ8ßŞ§Ê.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(ù¸ã±øÿÿÿÿ8ßŞ§Ê.
